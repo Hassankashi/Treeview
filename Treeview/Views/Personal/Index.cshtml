@@ -1,0 +1,91 @@
+﻿<!DOCTYPE html>
+
+<html>
+<head>
+    
+    <title>Index</title>
+   
+   <link href="~/Content/Css/kendo.common.min.css" rel="stylesheet" />
+  <link href="~/Content/Css/kendo.rtl.min.css" rel="stylesheet" />
+  <link href="~/Content/Css/kendo.dataviz.default.min.css" rel="stylesheet" />
+  <link href="~/Content/Css/kendo.dataviz.min.css" rel="stylesheet" />
+  
+     <link href="~/Content/Css/kendo.default.min.css" rel="stylesheet" />
+   
+  
+     <script src="~/Content/js/jquery.min.js"></script>
+    <script src="~/Content/js/kendo.web.min.js"></script>
+  <script src="~/Content/js/kendo.all.min.js"></script>
+  
+    <script src="~/Content/js/console.js"></script>
+
+</head>
+
+<body>
+    
+      <div id="example">
+     <h2>Treeview</h2>
+
+      <div class="demo-section k-header" style="width: 200px;">
+
+          <div id="treeview"></div>
+          
+      </div>
+      <div id="tvformat" hidden="hidden" >@ViewData["treeviewds"]</div>
+         
+      <div class="box">
+          <h4>Console log</h4>
+          <div id="myconsole" class="console"></div>
+
+      </div>
+
+
+      <script>
+          var tvstring = $("#tvformat").text();
+          var tvds = eval(tvstring);
+
+          var tv = $("#treeview").kendoTreeView({
+                  dragAndDrop: true,
+                  dataSource: tvds,
+                  drop: onDrop
+          }).data("kendoTreeView");
+          
+          function onDrop(e) {
+              $("#myconsole").text('');
+              kendoConsole.log(
+                        this.text(e.sourceNode) + "," + this.text(e.destinationNode) 
+                        );
+
+              var nodeinfo = $("#myconsole").text();
+              var nodearr = nodeinfo.split(',');
+              var childid = nodearr[0];
+              var parentid = nodearr[1];
+             
+                  $.ajax({
+                      type: 'POST',
+                      url: "/Personal/SaveNode",
+                      data: { 'childid': childid, 'parentid': parentid },
+                      dataType: 'json'
+                      
+                  });
+               }
+          </script>
+               
+            <style scoped>
+                #example {
+                    text-align: center;
+                }
+
+                .demo-section {
+                    display: inline-block;
+                    vertical-align: top;
+                    width: 320px;
+                    height: 500px;
+                    text-align: left;
+                    margin: 0 2em;
+                }
+            </style>
+      
+  </div>
+</body>
+</html>

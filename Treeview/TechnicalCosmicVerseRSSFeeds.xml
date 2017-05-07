@@ -1,0 +1,23 @@
+﻿<?xml version="1.0" encoding="utf-8" ?> 
+<rss version="2.0">
+<channel>
+<title>Technical Cosmic Verse</title>
+<link>http://www.http://technical.cosmicverse.info/</link>
+<description>My latest cool articles</description>
+  <language>en-us</language>
+  <copyright>Copyright 2014, Mahsa Hassankashi</copyright>
+  <lastBuildDate>Fri, 09 Sep 2014 09:00:00 GMT</lastBuildDate>
+  <category domain="http://www.technical.cosmicverse.info/C#"></category>
+<item>
+<title>Everything about Data Access Layer</title>
+<link>http://technical.cosmicverse.info/Article/Index/4</link>
+<guid>http://technical.cosmicverse.info/Article/Index/4</guid>
+<pubDate>Wed, 15 Oct 2014 12:20:00 GMT</pubDate>
+<description>
+  The most complete and best source about Data Access. Easy and visualized way to understand Collection {Array, ArrayList, HashTable, Stack, Queue, List, IList, IEnumerable, IQueryable, ICollection, Dictionary} , Entity Framework {CodeFirst , DatabaseFirst, ModelFirst} , ADO.NET { Command , Connection, DataReader, DataSet, DataTable, DataAdapter, DataView}, Linq { Linq2Sql, Linq2Collection, Linq2Array, Linq2XML } , Methods {Lambda Expression, Extension Methods, Partial Methods} especially for beginners. It has sample source code . I explained difficult part by the aid of so many pictures.
+Enjoy it .
+</description>
+  <author>Mahsa Hassankashi</author>
+  </item>
+</channel>
+</rss>

@@ -1,0 +1,84 @@
+﻿@{
+    ViewBag.Title = "DynamicTreeview";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    //RenderSection("masterjs", required: true);
+    
+}
+
+   
+
+
+        <script src="~/Content/js/kendo.web.js"></script>
+        <script src="~/Content/js/kendo.all.js"></script>
+        <script src="~/Content/js/console.js"></script>
+
+ <div style="margin-left:15px; margin-top:8px; ">
+        <h2>DynamicTreeview</h2>
+    </div>
+
+  <div id="example">
+     
+      <div class="demo-section k-header" style="width: 200px;">
+
+          <div id="treeview"></div>
+          
+      </div>
+      <div id="tvformat" hidden="hidden" >@ViewData["treeviewds"]</div>
+         
+      <div class="box">
+          <h4>Console log</h4>
+          <div id="myconsole" class="console"></div>
+
+      </div>
+
+      
+      <script>
+          var tvstring = $("#tvformat").text();
+          var tvds = eval(tvstring);
+
+          var tv = $("#treeview").kendoTreeView({
+                  dragAndDrop: true,
+                  dataSource: tvds,
+                  drop: onDrop
+          }).data("kendoTreeView");
+          
+          function onDrop(e) {
+              $("#myconsole").text('');
+              kendoConsole.log(
+                        this.text(e.sourceNode) + "," + this.text(e.destinationNode) 
+                        );
+
+              var nodeinfo = $("#myconsole").text();
+              var nodearr = nodeinfo.split(',');
+              var childid = nodearr[0];
+              var parentid = nodearr[1];
+             
+                  $.ajax({
+                      type: 'POST',
+                      url: "/Personal/SaveNode",
+                      data: { 'childid': childid, 'parentid': parentid },
+                      dataType: 'json'
+                      
+                  });
+               }
+          </script>
+               
+            <style scoped>
+                #example {
+                    text-align: center;
+                }
+
+                .demo-section {
+                    display: inline-block;
+                    vertical-align: top;
+                    width: 320px;
+                    height: 500px;
+                    text-align: left;
+                    margin: 0 2em;
+                }
+            </style>
+    
+  </div>
+
+ 
+  

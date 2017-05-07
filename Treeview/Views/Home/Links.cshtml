@@ -1,0 +1,16 @@
+﻿@model Treeview.Models.Content
+
+@{
+    ViewBag.Title = "Links";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<h2>Links</h2>
+
+<h3> @Html.DisplayFor(model => model.ContentTitle)</h3> <br /><a  style="color:blue;" href="http://iscc-charity.org/" target="_blank">MAHAK: Society to Support Children, Suffering from Cancer</a>
+<br />
+
+@{ var str = new HtmlString(Model.ContentBody.ToString());
+
+       @Html.Raw(str)   
+}
+

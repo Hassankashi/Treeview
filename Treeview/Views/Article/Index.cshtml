@@ -1,0 +1,141 @@
+﻿@model Treeview.Models.ViewModel
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<script src="~/Scripts/alertify.js"></script>
+    <script src="~/Scripts/alertify.min.js"></script>
+<link rel="stylesheet" href="~/Content/Css/alertify.bootstrap.css" />
+<link rel="stylesheet" href="~/Content/Css/alertify.core.css" />
+<link rel="stylesheet" href="~/Content/Css/alertify.default.css" />
+<script>  $('#artID').val(@Model.ArticleID);
+    $('#artTitle').val(@Model.ArticleTitle);
+   
+</script>
+<h2>  @Html.DisplayFor(model => model.ArticleTitle)</h2>
+<div style="font-size:small">
+<p>
+    @Html.DisplayFor(model => model.Author) |
+    @Html.DisplayFor(model => model.ArticleDateTime)
+</p>
+</div>
+<br />
+<h3> @Html.DisplayFor(model => model.ShortDesc)</h3>
+<br />
+<br />
+@{ var str = new HtmlString(Model.Body.ToString());
+
+       @Html.Raw(str)   
+}
+<br />
+<div style="color:blue">
+Tag:<a style="color:blue" href="http://www.codeproject.com" title="CodeProject" rel="tag">CodeProject</a> ,<a style="color:blue" href="http://technical.cosmicverse.info/Article/Index/1" title="ASP.NET" rel="tag">Delegate</a>, <a style="color:blue" title="C#" href="http://technical.cosmicverse.info/Article/Index/3" rel="tag">MVC From Basic</a>, <a style="color:blue" title="C#4.0" href="http://www.codeproject.com/Articles/732190/Real-Time-Web-Solution-for-Chat-by-MVC-SignalR-H" rel="tag">SignalR</a>, <a style="color:blue" title="Intermediate" href="http://www.codeproject.com/Articles/799559/Dynamic-Treeview-with-Drag-and-Drop-by-Kendo" rel="tag">Dynamic Treeview</a>, <a style="color:blue" href="http://www.codeproject.com/Articles/201099/AutoComplete-With-DataBase-and-AjaxControlToolkit" rel="tag">Auto Complete by Ajax</a>, <a style="color:blue" href="http://www.codeproject.com/Articles/215653/Cascading-Menus-Without-Page-Refresh-With-the-AJAX" rel="tag">Cascading Menu By Ajax</a>, <a style="color:blue" href="http://www.codeproject.com/Articles/359125/Project-Management-Using-Gantt-Chart" rel="tag">Project Management With Gantt Chart</a>
+</div>
+<br />
+<a style="color:red" href="http://www.technical.cosmicverse.info/TechnicalCosmicVerseRSSFeeds.xml">Rss Feed</a>
+<br />
+<br />
+<div style="color:darkorange">Feedback: Feel free to leave any feedback on this article; it is a pleasure to see your comments about this code. If you have any questions, please do not hesitate to ask me here.
+    <br />Your email address will not be published. All fields are Required 
+</div>
+<img src="~/Content/img/sepratorthick.jpg" />
+<br />
+<br />
+
+<script type="text/javascript" src="~/Content/js/jqxbuttons.js"></script>
+ <script type="text/javascript">
+     $(document).ready(function () {
+
+
+         $("#jqxSubmitButton").jqxButton({ width: '150' });
+
+         $("form").submit(function () {
+             //event.preventDefault(); // cancel submit
+             alertify.alert("Thank you, your comment is waited for confirmation");
+
+         });
+     });
+        </script>
+
+@using (Html.BeginForm("Comment", "Article", FormMethod.Post))
+{
+     @Html.ValidationSummary(true)
+ <div>@Html.HiddenFor(model => model.ArticleID, new { id = "artID"})</div>
+    
+ <div>@Html.HiddenFor(model => model.ArticleTitle, new { id = "artTitle"})</div>
+       
+        <div class="editor-label">
+            @Html.LabelFor(model => model.Name)
+        </div>
+        <div class="editor-field">
+            @Html.TextAreaFor(model => model.Name, 1, 40, null)
+            @Html.ValidationMessageFor(model => model.Name)
+        </div>
+ 
+       <div class="editor-label">
+            @Html.LabelFor(model => model.Email)
+        </div>
+        <div class="editor-field">
+            @Html.TextAreaFor(model => model.Email, 1, 40, null)
+            @Html.ValidationMessageFor(model => model.Email)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.BodyMsg)
+        </div>
+        <div class="editor-field">
+            @Html.TextAreaFor(model => model.BodyMsg, 10, 55, null)
+            @Html.ValidationMessageFor(model => model.BodyMsg)
+        </div>
+    <br />
+        <div>
+          <input  type="submit" value="Submit Comment"  id='jqxSubmitButton' />
+       </div>
+    
+     <br />
+     <br />
+    
+}
+
+
+<img src="~/Content/img/sepratorComment.jpg" />
+@{if (Model.allComments != null )
+  {
+      
+  
+<table>
+  
+@foreach (var item in Model.allComments) {
+    <tr>
+        
+        <td >
+            @Html.DisplayFor(modelItem => item.Name) | @Html.DisplayFor(modelItem => item.DateTime)
+        </td>
+       
+       </tr>
+    <tr>
+        <td style="color:blue">
+            @Html.DisplayFor(modelItem => item.BodyMsg)
+        </td>
+     
+    </tr>
+    <tr>
+        <td><img src="~/Content/img/seprator.jpg" /></td>
+    </tr>
+}
+
+</table>
+  }
+  }
+<br />
+<br />
+<br />
+<br />
+@section Scripts {
+
+    @System.Web.Optimization.Scripts.Render("~/bundles/jqueryval")
+  @*  @System.Web.Optimization.Scripts.Render("~/bundles/jquerynotify")
+  @System.Web.Optimization.Scripts.Render("~/bundles/alertify")*@
+}
+

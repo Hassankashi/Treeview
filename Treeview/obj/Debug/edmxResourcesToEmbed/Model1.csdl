@@ -1,0 +1,165 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="cosmicModel" Alias="Self" p1:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:p1="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityContainer Name="CosmicVerseEntities" p1:LazyLoadingEnabled="true">
+    <EntitySet Name="Articles" EntityType="cosmicModel.Article" />
+    <EntitySet Name="Comments" EntityType="cosmicModel.Comment" />
+    <EntitySet Name="Contents" EntityType="cosmicModel.Content" />
+    <EntitySet Name="LinkHits" EntityType="cosmicModel.LinkHit" />
+    <EntitySet Name="LinkSites" EntityType="cosmicModel.LinkSite" />
+    <EntitySet Name="MainSections" EntityType="cosmicModel.MainSection" />
+    <EntitySet Name="Personals" EntityType="cosmicModel.Personal" />
+    <EntitySet Name="SubSections" EntityType="cosmicModel.SubSection" />
+    <EntitySet Name="tbl_Conversation" EntityType="cosmicModel.tbl_Conversation" />
+    <EntitySet Name="tbl_Dep" EntityType="cosmicModel.tbl_Dep" />
+    <EntitySet Name="tbl_Product" EntityType="cosmicModel.tbl_Product" />
+    <EntitySet Name="tbl_User" EntityType="cosmicModel.tbl_User" />
+  </EntityContainer>
+  <EntityType Name="Article">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+    <Property Name="Title" Type="String" MaxLength="200" Unicode="true" FixedLength="false" />
+    <Property Name="ShortDesc" Type="String" MaxLength="500" Unicode="true" FixedLength="false" />
+    <Property Name="DateTime" Type="String" MaxLength="300" Unicode="true" FixedLength="false" />
+    <Property Name="Author" Type="String" MaxLength="200" Unicode="true" FixedLength="false" />
+    <Property Name="VoteAvg" Type="Decimal" Precision="18" Scale="0" />
+    <Property Name="FilePath" Type="String" MaxLength="500" Unicode="true" FixedLength="false" />
+    <Property Name="Tag" Type="String" MaxLength="700" Unicode="true" FixedLength="false" />
+    <Property Name="MainSectionID" Type="Int32" />
+    <Property Name="SubSectionID" Type="Int32" />
+    <Property Name="Body" Type="String" MaxLength="Max" Unicode="true" FixedLength="false" />
+  </EntityType>
+  <EntityType Name="Comment">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+    <Property Name="ArticleID" Type="Int32" />
+    <Property Name="Title" Type="String" MaxLength="500" Unicode="true" FixedLength="false" />
+    <Property Name="BodyMsg" Type="String" MaxLength="Max" Unicode="true" FixedLength="false" />
+    <Property Name="Name" Type="String" MaxLength="500" Unicode="true" FixedLength="false" />
+    <Property Name="Email" Type="String" MaxLength="200" Unicode="true" FixedLength="false" />
+    <Property Name="Vote" Type="Decimal" Precision="18" Scale="0" />
+    <Property Name="DateTime" Type="String" MaxLength="500" Unicode="true" FixedLength="false" />
+    <Property Name="Flag" Type="Boolean" />
+  </EntityType>
+  <EntityType Name="Content">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" />
+    <Property Name="Title" Type="String" MaxLength="300" Unicode="true" FixedLength="false" />
+    <Property Name="Body" Type="String" MaxLength="Max" Unicode="true" FixedLength="false" />
+  </EntityType>
+  <EntityType Name="LinkHit">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+    <Property Name="Link" Type="String" MaxLength="500" Unicode="true" FixedLength="false" />
+    <Property Name="IP" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
+    <Property Name="Date" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
+    <Property Name="Time" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
+    <Property Name="countrycode" Type="String" MaxLength="200" Unicode="true" FixedLength="false" />
+    <Property Name="countryname" Type="String" MaxLength="200" Unicode="true" FixedLength="false" />
+    <Property Name="city" Type="String" MaxLength="200" Unicode="true" FixedLength="false" />
+    <Property Name="regioncode" Type="String" MaxLength="200" Unicode="true" FixedLength="false" />
+    <Property Name="regionname" Type="String" MaxLength="200" Unicode="true" FixedLength="false" />
+    <Property Name="areacode" Type="String" MaxLength="200" Unicode="true" FixedLength="false" />
+    <Property Name="longitude" Type="String" MaxLength="200" Unicode="true" FixedLength="false" />
+    <Property Name="latitude" Type="String" MaxLength="200" Unicode="true" FixedLength="false" />
+    <Property Name="zipcode" Type="String" MaxLength="200" Unicode="true" FixedLength="false" />
+    <Property Name="IPDesc" Type="String" MaxLength="Max" Unicode="true" FixedLength="false" />
+  </EntityType>
+  <EntityType Name="LinkSite">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+    <Property Name="Link" Type="String" MaxLength="500" Unicode="true" FixedLength="false" />
+    <Property Name="IP" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
+    <Property Name="Date" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
+    <Property Name="Time" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
+    <Property Name="countrycode" Type="String" MaxLength="200" Unicode="true" FixedLength="false" />
+    <Property Name="countryname" Type="String" MaxLength="200" Unicode="true" FixedLength="false" />
+    <Property Name="city" Type="String" MaxLength="200" Unicode="true" FixedLength="false" />
+    <Property Name="regioncode" Type="String" MaxLength="200" Unicode="true" FixedLength="false" />
+    <Property Name="regionname" Type="String" MaxLength="200" Unicode="true" FixedLength="false" />
+    <Property Name="areacode" Type="String" MaxLength="200" Unicode="true" FixedLength="false" />
+    <Property Name="longitude" Type="String" MaxLength="200" Unicode="true" FixedLength="false" />
+    <Property Name="latitude" Type="String" MaxLength="200" Unicode="true" FixedLength="false" />
+    <Property Name="zipcode" Type="String" MaxLength="200" Unicode="true" FixedLength="false" />
+    <Property Name="IPDesc" Type="String" MaxLength="Max" Unicode="true" FixedLength="false" />
+  </EntityType>
+  <EntityType Name="MainSection">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" />
+    <Property Name="Title" Type="String" MaxLength="200" Unicode="true" FixedLength="false" />
+  </EntityType>
+  <EntityType Name="Personal">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+    <Property Name="ReportsTo" Type="Int32" />
+    <Property Name="Name" Type="String" MaxLength="70" Unicode="true" FixedLength="false" />
+  </EntityType>
+  <EntityType Name="SubSection">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" />
+    <Property Name="Title" Type="String" MaxLength="200" Unicode="true" FixedLength="false" />
+    <Property Name="MainSectionID" Type="Int32" />
+  </EntityType>
+  <EntityType Name="tbl_Conversation">
+    <Key>
+      <PropertyRef Name="ConID" />
+    </Key>
+    <Property Name="ConID" Type="Int32" Nullable="false" />
+    <Property Name="ConnectionIDUser" Type="String" MaxLength="100" Unicode="true" FixedLength="false" />
+    <Property Name="ConnectionIDAdmin" Type="String" MaxLength="100" Unicode="true" FixedLength="false" />
+    <Property Name="UserGroup" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
+    <Property Name="Msg" Type="String" MaxLength="Max" Unicode="true" FixedLength="false" />
+    <Property Name="StartTime" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
+    <Property Name="EndTime" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
+    <Property Name="MsgDate" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
+    <Property Name="MsgDuration" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
+    <Property Name="UserID" Type="Int32" />
+    <Property Name="AdminID" Type="Int32" />
+  </EntityType>
+  <EntityType Name="tbl_Dep">
+    <Key>
+      <PropertyRef Name="DepID" />
+    </Key>
+    <Property Name="DepID" Type="Int32" Nullable="false" />
+    <Property Name="DepName" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
+  </EntityType>
+  <EntityType Name="tbl_Product">
+    <Key>
+      <PropertyRef Name="ProductID" />
+    </Key>
+    <Property Name="ProductID" Type="Int32" Nullable="false" />
+    <Property Name="ParentID" Type="Int32" />
+    <Property Name="ChildID" Type="Int32" />
+    <Property Name="ProductName" Type="String" MaxLength="500" Unicode="true" FixedLength="false" />
+    <Property Name="UnitPrice" Type="Decimal" Precision="18" Scale="0" />
+    <Property Name="FilePath" Type="String" MaxLength="500" Unicode="true" FixedLength="false" />
+    <Property Name="Hint" Type="Decimal" Precision="18" Scale="0" />
+    <Property Name="UnitinStock" Type="Decimal" Precision="18" Scale="0" />
+    <Property Name="Discontinued" Type="Decimal" Precision="18" Scale="0" />
+  </EntityType>
+  <EntityType Name="tbl_User">
+    <Key>
+      <PropertyRef Name="UserID" />
+      <PropertyRef Name="AdminCode" />
+    </Key>
+    <Property Name="UserID" Type="Int32" Nullable="false" />
+    <Property Name="UserName" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
+    <Property Name="Password" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
+    <Property Name="AdminCode" Type="Int32" Nullable="false" />
+  </EntityType>
+</Schema>

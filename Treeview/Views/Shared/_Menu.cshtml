@@ -1,0 +1,107 @@
+﻿<!DOCTYPE html>
+
+     <link rel="stylesheet" href="~/Content/Css/jqx.base.css" type="text/css" />
+    <script type="text/javascript" src="~/Content/js/jquery-1.10.2.min.js"></script>
+    <script type="text/javascript" src="~/Content/js/jqxcore.js"></script>
+    <script type="text/javascript" src="~/Content/js/jqxmenu.js"></script>
+    <script type="text/javascript" src="~/Content/js/jqxcheckbox.js"></script>
+    <script type="text/javascript" src="~/Content/js/demos.js"></script>
+    
+
+       <div id='content'>
+        
+        <script type="text/javascript">
+            $(document).ready(function () {
+                $("#jqxMenu").jqxMenu({ width: '100%', height: '30px' });
+
+                var centerItems = function () {
+                    var firstItem = $($("#jqxMenu ul:first").children()[0]);
+                    firstItem.css('margin-left', 0);
+                    var width = 0;
+                    var borderOffset = 2;
+                    $.each($("#jqxMenu ul:first").children(), function () {
+                        width += $(this).outerWidth(true) + borderOffset;
+                    });
+                    var menuWidth = $("#jqxMenu").outerWidth();
+                    firstItem.css('margin-left', (menuWidth / 2) - (width / 2));
+                }
+                centerItems();
+                $(window).resize(function () {
+                    centerItems();
+                });
+            });
+        </script>
+           <div id='jqxMenu'>
+                <ul>
+                    <li> <a href="@Url.Action("Index", "Article", new { id = 3 })">Home</a></li>
+                    <li>C# .NET
+                        <ul style='width: 250px;'>
+                            <li><a href="@Url.Action("Index", "Article", new { id = 1 })" target="_blank">Delegate</a></li>
+                            @*<li type='separator'></li>
+                            <li>Software Solutions
+                                <ul style='width: 220px;'>
+                                    <li><a href="#ConsumerPhoto">Consumer photo and video</a></li>
+                                    <li><a href="#Mobile">Mobile</a></li>
+                                    <li><a href="#RIA">Rich Internet applications</a></li>
+                                    <li><a href="#TechnicalCommunication">Technical communication</a></li>
+                                    <li><a href="#Training">Training and eLearning</a></li>
+                                    <li><a href="#WebConferencing">Web conferencing</a></li>
+                                </ul>
+                            </li>
+                            <li><a href="#">All industries and solutions</a></li>*@
+                        </ul>
+                    </li>
+                    <li>IIS
+                        <ul>
+                             <li><a href="@Url.Action("Index", "Article", new { id = 5 })" target="_blank">IIS</a></li>
+                           
+                            
+                           
+                        </ul>
+                    </li>
+                    
+                    <li>LINQ/EFM
+                        <ul style='width: 200px;'>
+                             <li><a href="@Url.Action("Index", "Article", new { id = 4 })" target="_blank">LINQ Concept</a></li>
+                        </ul>
+                    </li>
+                    <li>MVC
+                        <ul style='width: 180px;'>
+                             <li><a href="@Url.Action("Index", "Article", new { id = 3 })" target="_blank">MVC Concept</a></li>
+                             <li><a href="#Press">MVC tips</a></li>
+                        </ul>
+                    </li>
+                    <li>WCF
+                       
+                    </li>
+                    <li>JQuery
+                       @* <ul style='width: 180px;'>
+                            <li><a href="#About">Fundamental Concept</a></li>
+                            <li><a href="#Press">Press</a></li>
+                            
+                        </ul>*@
+                    </li>
+                    <li>SQL/BI
+                       @* <ul style='width: 180px;'>
+                            <li><a href="#About">TSQL</a></li>
+                            <li><a href="#Press">Stored Procedure</a></li>
+                            
+                        </ul>*@
+                    </li>
+                   
+                       <li><a href="http://www.e-iceblue.com/" target="_blank">Office Utility</a>
+                        
+                    </li>
+
+                     <li><a href="http://iscc-charity.org/" target="_blank">kids cancer charity</a>
+                        
+                    </li>
+                    <li><a href="http://www.cosmicverse.info/" target="_blank">Cosmic Verse</a>
+                        
+                    </li>
+                </ul>
+            </div>
+
+    
+    </div>
+  

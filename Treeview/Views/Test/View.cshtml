@@ -1,0 +1,42 @@
+﻿@{
+    ViewBag.Title = "View";
+}
+
+@using (Html.BeginForm("ExportExcel", "Test", FormMethod.Post))
+{
+ <script type="text/JavaScript" src="Scripts/jquery-2.0.1.min.js"></script> 
+   <script type="text/javascript">
+       $(document).ready(function () {
+           $("#btnExtract").click(function () {
+               var female = $("#female").val();
+               var male = $("#male").val();
+               if (female = true) {
+                   var strgender = "زن";
+               }
+               if (male = true) {
+                   var strgender = "مرد";
+               }
+               var strgendertxt = "جنسیت";
+               $('#divout').append('<table><tr><th>' + strgendertxt + '</th></tr><tr><td> ' + strgender + '</td></tr></table>');
+               var strpass = '<table><tr><th>' + strgendertxt + '</th></tr><tr><td> ' + strgender + '</td></tr></table>';
+               $("#me").val("<table><tr><th>" + strgendertxt + "</th></tr><tr><td> " + strgender + "</td></tr></table>");
+           });
+       });
+      
+
+    </script>   
+}
+<h2>View</h2>
+
+    جنسیت: <input id="female" type="radio" />زن <input id="male" type="radio" />مرد<br />
+دانشجو دورهء : <input id="hozouri1" type="radio" />حضوری
+          <input id="hozouri2" type="radio" />دانشجوی دورة مجازی
+          <input id="hozouri3" type="radio" />دانشجوی دورة MBA(آموزش‌های آزاد)<br />
+          
+          <input id="btnExtract" type="button" value="اول اینجا را کلیک کنید" />
+          @Html.TextBox("me")
+       <input id="btn" type="submit" />  
+      <div id="divout" runat="server"></div>
+
+          
+

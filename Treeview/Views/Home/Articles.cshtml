@@ -1,0 +1,15 @@
+﻿@model Treeview.Models.Content
+
+@{
+    ViewBag.Title = "Articles";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<h2>Articles</h2>
+<h3> @Html.DisplayFor(model => model.ContentTitle)</h3>
+<br />
+<br />
+@{ var str = new HtmlString(Model.ContentBody.ToString());
+
+       @Html.Raw(str)   
+}
+

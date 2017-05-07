@@ -1,0 +1,40 @@
+﻿@model Treeview.Models.Content
+
+@{
+    ViewBag.Title = "ContactME";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<script type="text/javascript" src="~/Content/js/jqxbuttons.js"></script>
+ <script type="text/javascript">
+            $(document).ready(function () {
+                
+               
+                $("#jqxSubmitButton").jqxButton({ width: '150'});
+              
+
+            });
+        </script>
+
+<h2>ContactME</h2>
+<h3> @Html.DisplayFor(model => model.ContentTitle)</h3>
+<br />
+<br />
+@{ var str = new HtmlString(Model.ContentBody.ToString());
+
+       @Html.Raw(str)   
+}
+
+@using (Html.BeginForm("SendMail", "Home", FormMethod.Post))
+{
+   <p>Name:</p>
+   <p> @Html.TextAreaFor(x => x.Name, 1, 40, null)</p>
+    <p>Email:</p>
+    @Html.TextAreaFor(x => x.Email, 1, 40, null)
+    <p>Message:</p>
+    @Html.TextAreaFor(x => x.Message, 10, 55, null)
+        
+    <div>
+      <input  type="submit" value="Submit" id='jqxSubmitButton' />
+    </div>
+
+}

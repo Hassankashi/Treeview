@@ -1,0 +1,62 @@
+﻿@model Treeview.Models.Content
+
+@{
+    ViewBag.Title = "CreateContent";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>CreateContent</h2>
+ <link rel="stylesheet" href="~/Content/Css/jqx.base.css" type="text/css" />
+    <script type="text/javascript" src="~/Content/js/demos.js"></script>
+    <script type="text/javascript" src="~/Content/js/jqxcore.js"></script>
+    <script type="text/javascript" src="~/Content/js/jqxbuttons.js"></script>
+    <script type="text/javascript" src="~/Content/js/jqxscrollbar.js"></script>
+    <script type="text/javascript" src="~/Content/js/jqxlistbox.js"></script>
+    <script type="text/javascript" src="~/Content/js/jqxdropdownlist.js"></script>
+    <script type="text/javascript" src="~/Content/js/jqxdropdownbutton.js"></script>
+    <script type="text/javascript" src="~/Content/js/jqxcolorpicker.js"></script>
+    <script type="text/javascript" src="~/Content/js/jqxwindow.js"></script>
+    <script type="text/javascript" src="~/Content/js/jqxeditor.js"></script>
+    <script type="text/javascript" src="~/Content/js/jqxtooltip.js"></script>
+    <script type="text/javascript" src="~/Content/js/jqxcheckbox.js"></script>
+
+@using (Html.BeginForm("CreateContent", "Home", FormMethod.Post))
+{
+    @Html.ValidationSummary(true)
+    var value ="";
+    
+         <script type="text/javascript">
+             $(document).ready(function () {
+                 $("#Body").jqxEditor({
+                     height: "700px",
+                     width: "900px"
+                 });
+                 $("#Body").change(function () {
+                 //$("#Body").on('change', function () {
+                     value = $("#Body").val();
+                     $('#my').val(value);
+                 });
+                 
+             });
+    </script>      
+         
+     <div class="editor-label">
+            @Html.LabelFor(model => model.ContentTitle)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.ContentTitle)
+            @Html.ValidationMessageFor(model => model.ContentTitle)
+        </div>
+
+    <textarea id="Body">
+       
+    </textarea>
+
+     <div>@Html.HiddenFor(model => model.ContentBody, new { id = "my"})</div>
+       
+        <p>
+            <input type="submit" value="Create" />
+        </p>
+  
+}
+

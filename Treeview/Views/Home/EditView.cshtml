@@ -1,0 +1,74 @@
+﻿@model Treeview.Content
+
+@{
+    ViewBag.Title = "EditView";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>EditView</h2>
+ <link rel="stylesheet" href="~/Content/Css/jqx.base.css" type="text/css" />
+    <script type="text/javascript" src="~/Content/js/demos.js"></script>
+    <script type="text/javascript" src="~/Content/js/jqxcore.js"></script>
+    <script type="text/javascript" src="~/Content/js/jqxbuttons.js"></script>
+    <script type="text/javascript" src="~/Content/js/jqxscrollbar.js"></script>
+    <script type="text/javascript" src="~/Content/js/jqxlistbox.js"></script>
+    <script type="text/javascript" src="~/Content/js/jqxdropdownlist.js"></script>
+    <script type="text/javascript" src="~/Content/js/jqxdropdownbutton.js"></script>
+    <script type="text/javascript" src="~/Content/js/jqxcolorpicker.js"></script>
+    <script type="text/javascript" src="~/Content/js/jqxwindow.js"></script>
+    <script type="text/javascript" src="~/Content/js/jqxeditor.js"></script>
+    <script type="text/javascript" src="~/Content/js/jqxtooltip.js"></script>
+    <script type="text/javascript" src="~/Content/js/jqxcheckbox.js"></script>
+
+@using (Html.BeginForm("Edit", "Home", FormMethod.Post))
+{
+        @Html.ValidationSummary(true)
+       var value ="";
+    
+         <script type="text/javascript">
+             $(document).ready(function () {
+                 $("#Body").jqxEditor({
+                     height: "400px",
+                     width: "900px"
+
+                 });
+                 value = $("#my").val();
+                 $("#Body").val(value);
+
+                 $("#Body").change(function () {
+                     //$("#Body").on('change', function () {
+                     value = $("#Body").val();
+                     $('#my').val(value);
+                     //***
+
+
+                 });
+
+             });
+    </script>      
+         
+    <textarea id="Body">
+       
+    </textarea>
+       @*<div>@Html.HiddenFor(model => model.Body, new { @Value = @value})</div>*@
+        <div>@Html.HiddenFor(model => model.Body, new { id = "my"})</div>
+        
+        <div>@Html.HiddenFor(model => model.ID, new { id = "artID"})</div>
+        
+      
+        <div class="editor-label">
+            @Html.LabelFor(model => model.Title)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.Title)
+            @Html.ValidationMessageFor(model => model.Title)
+        </div>
+
+       
+        <p>
+            <input type="submit" value="Edit" />
+        </p>
+    
+   
+}
+

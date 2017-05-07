@@ -1,0 +1,40 @@
+﻿@Page Language="C#" AutoEventWireup="false" 
+
+@{
+    
+       Layout = null;
+ }
+<!DOCTYPE html>
+<html>
+    <head>    <script type="text/javascript" src="~/Content/js/jquery-1.9.1.min.js"></script></head>
+<body>
+ <button onclick="myFunction()">Click me</button>
+ 
+      <div id="strdiv">
+           <table><tr><td>First</td><td>second</td></tr></table>
+                 </div>
+    <div  id="mahsa">mahsa</div>
+
+  
+  <script> 
+      var strvar = "";
+      function myFunction() {
+         // strvar2 = $("#mahsa").text();
+           strvar = $("#strdiv").html();
+          $.ajax({
+              type: 'post',
+              url: "/Test/Excel",
+              data: { 'strvar': strvar },
+              datatype: 'json'
+          });
+      }
+                   
+               
+  </script>
+
+
+    
+    </body>
+</html>
+   
+    

@@ -1,0 +1,608 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="cosmicModel.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2008" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityContainer Name="cosmicModelStoreContainer">
+          <EntitySet Name="Article" EntityType="cosmicModel.Store.Article" store:Type="Tables" store:Schema="dbo" store:Name="Article">
+            <DefiningQuery>SELECT 
+      [Article].[ID] AS [ID], 
+      [Article].[Title] AS [Title], 
+      [Article].[ShortDesc] AS [ShortDesc], 
+      [Article].[DateTime] AS [DateTime], 
+      [Article].[Author] AS [Author], 
+      [Article].[VoteAvg] AS [VoteAvg], 
+      [Article].[FilePath] AS [FilePath], 
+      [Article].[Tag] AS [Tag], 
+      [Article].[MainSectionID] AS [MainSectionID], 
+      [Article].[SubSectionID] AS [SubSectionID], 
+      [Article].[Body] AS [Body]
+      FROM [dbo].[Article] AS [Article]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="Comment" EntityType="cosmicModel.Store.Comment" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="Content" EntityType="cosmicModel.Store.Content" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="LinkHit" EntityType="cosmicModel.Store.LinkHit" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="LinkSite" EntityType="cosmicModel.Store.LinkSite" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="MainSection" EntityType="cosmicModel.Store.MainSection" store:Type="Tables" store:Schema="dbo" store:Name="MainSection">
+            <DefiningQuery>SELECT 
+      [MainSection].[ID] AS [ID], 
+      [MainSection].[Title] AS [Title]
+      FROM [dbo].[MainSection] AS [MainSection]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="Personal" EntityType="cosmicModel.Store.Personal" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="SubSection" EntityType="cosmicModel.Store.SubSection" store:Type="Tables" store:Schema="dbo" store:Name="SubSection">
+            <DefiningQuery>SELECT 
+      [SubSection].[ID] AS [ID], 
+      [SubSection].[Title] AS [Title], 
+      [SubSection].[MainSectionID] AS [MainSectionID]
+      FROM [dbo].[SubSection] AS [SubSection]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="tbl_Conversation" EntityType="cosmicModel.Store.tbl_Conversation" store:Type="Tables" store:Schema="dbo" store:Name="tbl_Conversation">
+            <DefiningQuery>SELECT 
+      [tbl_Conversation].[ConID] AS [ConID], 
+      [tbl_Conversation].[ConnectionIDUser] AS [ConnectionIDUser], 
+      [tbl_Conversation].[ConnectionIDAdmin] AS [ConnectionIDAdmin], 
+      [tbl_Conversation].[UserGroup] AS [UserGroup], 
+      [tbl_Conversation].[Msg] AS [Msg], 
+      [tbl_Conversation].[StartTime] AS [StartTime], 
+      [tbl_Conversation].[EndTime] AS [EndTime], 
+      [tbl_Conversation].[MsgDate] AS [MsgDate], 
+      [tbl_Conversation].[MsgDuration] AS [MsgDuration], 
+      [tbl_Conversation].[UserID] AS [UserID], 
+      [tbl_Conversation].[AdminID] AS [AdminID]
+      FROM [dbo].[tbl_Conversation] AS [tbl_Conversation]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="tbl_Dep" EntityType="cosmicModel.Store.tbl_Dep" store:Type="Tables" store:Schema="dbo" store:Name="tbl_Dep">
+            <DefiningQuery>SELECT 
+      [tbl_Dep].[DepID] AS [DepID], 
+      [tbl_Dep].[DepName] AS [DepName]
+      FROM [dbo].[tbl_Dep] AS [tbl_Dep]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="tbl_Product" EntityType="cosmicModel.Store.tbl_Product" store:Type="Tables" store:Schema="dbo" store:Name="tbl_Product">
+            <DefiningQuery>SELECT 
+      [tbl_Product].[ProductID] AS [ProductID], 
+      [tbl_Product].[ParentID] AS [ParentID], 
+      [tbl_Product].[ChildID] AS [ChildID], 
+      [tbl_Product].[ProductName] AS [ProductName], 
+      [tbl_Product].[UnitPrice] AS [UnitPrice], 
+      [tbl_Product].[FilePath] AS [FilePath], 
+      [tbl_Product].[Hint] AS [Hint], 
+      [tbl_Product].[UnitinStock] AS [UnitinStock], 
+      [tbl_Product].[Discontinued] AS [Discontinued]
+      FROM [dbo].[tbl_Product] AS [tbl_Product]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="tbl_User" EntityType="cosmicModel.Store.tbl_User" store:Type="Tables" store:Schema="dbo" store:Name="tbl_User">
+            <DefiningQuery>SELECT 
+      [tbl_User].[UserID] AS [UserID], 
+      [tbl_User].[UserName] AS [UserName], 
+      [tbl_User].[Password] AS [Password], 
+      [tbl_User].[AdminCode] AS [AdminCode]
+      FROM [dbo].[tbl_User] AS [tbl_User]</DefiningQuery>
+          </EntitySet>
+        </EntityContainer>
+        <!--Errors Found During Generation:
+      warning 6002: The table/view 'cosmic.dbo.Article' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.
+      -->
+        <EntityType Name="Article">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="Title" Type="nvarchar" MaxLength="200" />
+          <Property Name="ShortDesc" Type="nvarchar" MaxLength="500" />
+          <Property Name="DateTime" Type="nvarchar" MaxLength="300" />
+          <Property Name="Author" Type="nvarchar" MaxLength="200" />
+          <Property Name="VoteAvg" Type="decimal" />
+          <Property Name="FilePath" Type="nvarchar" MaxLength="500" />
+          <Property Name="Tag" Type="nvarchar" MaxLength="700" />
+          <Property Name="MainSectionID" Type="int" />
+          <Property Name="SubSectionID" Type="int" />
+          <Property Name="Body" Type="ntext" />
+        </EntityType>
+        <EntityType Name="Comment">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="ArticleID" Type="int" />
+          <Property Name="Title" Type="nvarchar" MaxLength="500" />
+          <Property Name="BodyMsg" Type="ntext" />
+          <Property Name="Name" Type="nvarchar" MaxLength="500" />
+          <Property Name="Email" Type="nvarchar" MaxLength="200" />
+          <Property Name="Vote" Type="decimal" />
+          <Property Name="DateTime" Type="nvarchar" MaxLength="500" />
+          <Property Name="Flag" Type="bit" />
+        </EntityType>
+        <EntityType Name="Content">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" Nullable="false" />
+          <Property Name="Title" Type="nvarchar" MaxLength="300" />
+          <Property Name="Body" Type="ntext" />
+        </EntityType>
+        <EntityType Name="LinkHit">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="Link" Type="nvarchar" MaxLength="500" />
+          <Property Name="IP" Type="nvarchar" MaxLength="50" />
+          <Property Name="Date" Type="nvarchar" MaxLength="50" />
+          <Property Name="Time" Type="nvarchar" MaxLength="50" />
+          <Property Name="countrycode" Type="nvarchar" MaxLength="200" />
+          <Property Name="countryname" Type="nvarchar" MaxLength="200" />
+          <Property Name="city" Type="nvarchar" MaxLength="200" />
+          <Property Name="regioncode" Type="nvarchar" MaxLength="200" />
+          <Property Name="regionname" Type="nvarchar" MaxLength="200" />
+          <Property Name="areacode" Type="nvarchar" MaxLength="200" />
+          <Property Name="longitude" Type="nvarchar" MaxLength="200" />
+          <Property Name="latitude" Type="nvarchar" MaxLength="200" />
+          <Property Name="zipcode" Type="nvarchar" MaxLength="200" />
+          <Property Name="IPDesc" Type="ntext" />
+        </EntityType>
+        <EntityType Name="LinkSite">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="Link" Type="nvarchar" MaxLength="500" />
+          <Property Name="IP" Type="nvarchar" MaxLength="50" />
+          <Property Name="Date" Type="nvarchar" MaxLength="50" />
+          <Property Name="Time" Type="nvarchar" MaxLength="50" />
+          <Property Name="countrycode" Type="nvarchar" MaxLength="200" />
+          <Property Name="countryname" Type="nvarchar" MaxLength="200" />
+          <Property Name="city" Type="nvarchar" MaxLength="200" />
+          <Property Name="regioncode" Type="nvarchar" MaxLength="200" />
+          <Property Name="regionname" Type="nvarchar" MaxLength="200" />
+          <Property Name="areacode" Type="nvarchar" MaxLength="200" />
+          <Property Name="longitude" Type="nvarchar" MaxLength="200" />
+          <Property Name="latitude" Type="nvarchar" MaxLength="200" />
+          <Property Name="zipcode" Type="nvarchar" MaxLength="200" />
+          <Property Name="IPDesc" Type="ntext" />
+        </EntityType>
+        <!--Errors Found During Generation:
+      warning 6002: The table/view 'cosmic.dbo.MainSection' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.
+      -->
+        <EntityType Name="MainSection">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" Nullable="false" />
+          <Property Name="Title" Type="nvarchar" MaxLength="200" />
+        </EntityType>
+        <EntityType Name="Personal">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="ReportsTo" Type="int" />
+          <Property Name="Name" Type="nvarchar" MaxLength="70" />
+        </EntityType>
+        <!--Errors Found During Generation:
+      warning 6002: The table/view 'cosmic.dbo.SubSection' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.
+      -->
+        <EntityType Name="SubSection">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" Nullable="false" />
+          <Property Name="Title" Type="nvarchar" MaxLength="200" />
+          <Property Name="MainSectionID" Type="int" />
+        </EntityType>
+        <!--Errors Found During Generation:
+      warning 6002: The table/view 'cosmic.dbo.tbl_Conversation' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.
+      -->
+        <EntityType Name="tbl_Conversation">
+          <Key>
+            <PropertyRef Name="ConID" />
+          </Key>
+          <Property Name="ConID" Type="int" Nullable="false" />
+          <Property Name="ConnectionIDUser" Type="nvarchar" MaxLength="100" />
+          <Property Name="ConnectionIDAdmin" Type="nvarchar" MaxLength="100" />
+          <Property Name="UserGroup" Type="nvarchar" MaxLength="50" />
+          <Property Name="Msg" Type="ntext" />
+          <Property Name="StartTime" Type="nvarchar" MaxLength="50" />
+          <Property Name="EndTime" Type="nvarchar" MaxLength="50" />
+          <Property Name="MsgDate" Type="nvarchar" MaxLength="50" />
+          <Property Name="MsgDuration" Type="nvarchar" MaxLength="50" />
+          <Property Name="UserID" Type="int" />
+          <Property Name="AdminID" Type="int" />
+        </EntityType>
+        <!--Errors Found During Generation:
+      warning 6002: The table/view 'cosmic.dbo.tbl_Dep' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.
+      -->
+        <EntityType Name="tbl_Dep">
+          <Key>
+            <PropertyRef Name="DepID" />
+          </Key>
+          <Property Name="DepID" Type="int" Nullable="false" />
+          <Property Name="DepName" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <!--Errors Found During Generation:
+      warning 6002: The table/view 'cosmic.dbo.tbl_Product' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.
+      -->
+        <EntityType Name="tbl_Product">
+          <Key>
+            <PropertyRef Name="ProductID" />
+          </Key>
+          <Property Name="ProductID" Type="int" Nullable="false" />
+          <Property Name="ParentID" Type="int" />
+          <Property Name="ChildID" Type="int" />
+          <Property Name="ProductName" Type="nvarchar" MaxLength="500" />
+          <Property Name="UnitPrice" Type="decimal" />
+          <Property Name="FilePath" Type="nvarchar" MaxLength="500" />
+          <Property Name="Hint" Type="numeric" />
+          <Property Name="UnitinStock" Type="numeric" />
+          <Property Name="Discontinued" Type="numeric" />
+        </EntityType>
+        <!--Errors Found During Generation:
+      warning 6002: The table/view 'cosmic.dbo.tbl_User' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.
+      -->
+        <EntityType Name="tbl_User">
+          <Key>
+            <PropertyRef Name="UserID" />
+            <PropertyRef Name="AdminCode" />
+          </Key>
+          <Property Name="UserID" Type="int" Nullable="false" />
+          <Property Name="UserName" Type="nvarchar" MaxLength="50" />
+          <Property Name="Password" Type="nvarchar" MaxLength="50" />
+          <Property Name="AdminCode" Type="int" Nullable="false" />
+        </EntityType>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="cosmicModel" Alias="Self" p1:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:p1="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityContainer Name="CosmicVerseEntities" p1:LazyLoadingEnabled="true">
+          <EntitySet Name="Articles" EntityType="cosmicModel.Article" />
+          <EntitySet Name="Comments" EntityType="cosmicModel.Comment" />
+          <EntitySet Name="Contents" EntityType="cosmicModel.Content" />
+          <EntitySet Name="LinkHits" EntityType="cosmicModel.LinkHit" />
+          <EntitySet Name="LinkSites" EntityType="cosmicModel.LinkSite" />
+          <EntitySet Name="MainSections" EntityType="cosmicModel.MainSection" />
+          <EntitySet Name="Personals" EntityType="cosmicModel.Personal" />
+          <EntitySet Name="SubSections" EntityType="cosmicModel.SubSection" />
+          <EntitySet Name="tbl_Conversation" EntityType="cosmicModel.tbl_Conversation" />
+          <EntitySet Name="tbl_Dep" EntityType="cosmicModel.tbl_Dep" />
+          <EntitySet Name="tbl_Product" EntityType="cosmicModel.tbl_Product" />
+          <EntitySet Name="tbl_User" EntityType="cosmicModel.tbl_User" />
+        </EntityContainer>
+        <EntityType Name="Article">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+          <Property Name="Title" Type="String" MaxLength="200" Unicode="true" FixedLength="false" />
+          <Property Name="ShortDesc" Type="String" MaxLength="500" Unicode="true" FixedLength="false" />
+          <Property Name="DateTime" Type="String" MaxLength="300" Unicode="true" FixedLength="false" />
+          <Property Name="Author" Type="String" MaxLength="200" Unicode="true" FixedLength="false" />
+          <Property Name="VoteAvg" Type="Decimal" Precision="18" Scale="0" />
+          <Property Name="FilePath" Type="String" MaxLength="500" Unicode="true" FixedLength="false" />
+          <Property Name="Tag" Type="String" MaxLength="700" Unicode="true" FixedLength="false" />
+          <Property Name="MainSectionID" Type="Int32" />
+          <Property Name="SubSectionID" Type="Int32" />
+          <Property Name="Body" Type="String" MaxLength="Max" Unicode="true" FixedLength="false" />
+        </EntityType>
+        <EntityType Name="Comment">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+          <Property Name="ArticleID" Type="Int32" />
+          <Property Name="Title" Type="String" MaxLength="500" Unicode="true" FixedLength="false" />
+          <Property Name="BodyMsg" Type="String" MaxLength="Max" Unicode="true" FixedLength="false" />
+          <Property Name="Name" Type="String" MaxLength="500" Unicode="true" FixedLength="false" />
+          <Property Name="Email" Type="String" MaxLength="200" Unicode="true" FixedLength="false" />
+          <Property Name="Vote" Type="Decimal" Precision="18" Scale="0" />
+          <Property Name="DateTime" Type="String" MaxLength="500" Unicode="true" FixedLength="false" />
+          <Property Name="Flag" Type="Boolean" />
+        </EntityType>
+        <EntityType Name="Content">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" />
+          <Property Name="Title" Type="String" MaxLength="300" Unicode="true" FixedLength="false" />
+          <Property Name="Body" Type="String" MaxLength="Max" Unicode="true" FixedLength="false" />
+        </EntityType>
+        <EntityType Name="LinkHit">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+          <Property Name="Link" Type="String" MaxLength="500" Unicode="true" FixedLength="false" />
+          <Property Name="IP" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
+          <Property Name="Date" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
+          <Property Name="Time" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
+          <Property Name="countrycode" Type="String" MaxLength="200" Unicode="true" FixedLength="false" />
+          <Property Name="countryname" Type="String" MaxLength="200" Unicode="true" FixedLength="false" />
+          <Property Name="city" Type="String" MaxLength="200" Unicode="true" FixedLength="false" />
+          <Property Name="regioncode" Type="String" MaxLength="200" Unicode="true" FixedLength="false" />
+          <Property Name="regionname" Type="String" MaxLength="200" Unicode="true" FixedLength="false" />
+          <Property Name="areacode" Type="String" MaxLength="200" Unicode="true" FixedLength="false" />
+          <Property Name="longitude" Type="String" MaxLength="200" Unicode="true" FixedLength="false" />
+          <Property Name="latitude" Type="String" MaxLength="200" Unicode="true" FixedLength="false" />
+          <Property Name="zipcode" Type="String" MaxLength="200" Unicode="true" FixedLength="false" />
+          <Property Name="IPDesc" Type="String" MaxLength="Max" Unicode="true" FixedLength="false" />
+        </EntityType>
+        <EntityType Name="LinkSite">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+          <Property Name="Link" Type="String" MaxLength="500" Unicode="true" FixedLength="false" />
+          <Property Name="IP" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
+          <Property Name="Date" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
+          <Property Name="Time" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
+          <Property Name="countrycode" Type="String" MaxLength="200" Unicode="true" FixedLength="false" />
+          <Property Name="countryname" Type="String" MaxLength="200" Unicode="true" FixedLength="false" />
+          <Property Name="city" Type="String" MaxLength="200" Unicode="true" FixedLength="false" />
+          <Property Name="regioncode" Type="String" MaxLength="200" Unicode="true" FixedLength="false" />
+          <Property Name="regionname" Type="String" MaxLength="200" Unicode="true" FixedLength="false" />
+          <Property Name="areacode" Type="String" MaxLength="200" Unicode="true" FixedLength="false" />
+          <Property Name="longitude" Type="String" MaxLength="200" Unicode="true" FixedLength="false" />
+          <Property Name="latitude" Type="String" MaxLength="200" Unicode="true" FixedLength="false" />
+          <Property Name="zipcode" Type="String" MaxLength="200" Unicode="true" FixedLength="false" />
+          <Property Name="IPDesc" Type="String" MaxLength="Max" Unicode="true" FixedLength="false" />
+        </EntityType>
+        <EntityType Name="MainSection">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" />
+          <Property Name="Title" Type="String" MaxLength="200" Unicode="true" FixedLength="false" />
+        </EntityType>
+        <EntityType Name="Personal">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+          <Property Name="ReportsTo" Type="Int32" />
+          <Property Name="Name" Type="String" MaxLength="70" Unicode="true" FixedLength="false" />
+        </EntityType>
+        <EntityType Name="SubSection">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" />
+          <Property Name="Title" Type="String" MaxLength="200" Unicode="true" FixedLength="false" />
+          <Property Name="MainSectionID" Type="Int32" />
+        </EntityType>
+        <EntityType Name="tbl_Conversation">
+          <Key>
+            <PropertyRef Name="ConID" />
+          </Key>
+          <Property Name="ConID" Type="Int32" Nullable="false" />
+          <Property Name="ConnectionIDUser" Type="String" MaxLength="100" Unicode="true" FixedLength="false" />
+          <Property Name="ConnectionIDAdmin" Type="String" MaxLength="100" Unicode="true" FixedLength="false" />
+          <Property Name="UserGroup" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
+          <Property Name="Msg" Type="String" MaxLength="Max" Unicode="true" FixedLength="false" />
+          <Property Name="StartTime" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
+          <Property Name="EndTime" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
+          <Property Name="MsgDate" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
+          <Property Name="MsgDuration" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
+          <Property Name="UserID" Type="Int32" />
+          <Property Name="AdminID" Type="Int32" />
+        </EntityType>
+        <EntityType Name="tbl_Dep">
+          <Key>
+            <PropertyRef Name="DepID" />
+          </Key>
+          <Property Name="DepID" Type="Int32" Nullable="false" />
+          <Property Name="DepName" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
+        </EntityType>
+        <EntityType Name="tbl_Product">
+          <Key>
+            <PropertyRef Name="ProductID" />
+          </Key>
+          <Property Name="ProductID" Type="Int32" Nullable="false" />
+          <Property Name="ParentID" Type="Int32" />
+          <Property Name="ChildID" Type="Int32" />
+          <Property Name="ProductName" Type="String" MaxLength="500" Unicode="true" FixedLength="false" />
+          <Property Name="UnitPrice" Type="Decimal" Precision="18" Scale="0" />
+          <Property Name="FilePath" Type="String" MaxLength="500" Unicode="true" FixedLength="false" />
+          <Property Name="Hint" Type="Decimal" Precision="18" Scale="0" />
+          <Property Name="UnitinStock" Type="Decimal" Precision="18" Scale="0" />
+          <Property Name="Discontinued" Type="Decimal" Precision="18" Scale="0" />
+        </EntityType>
+        <EntityType Name="tbl_User">
+          <Key>
+            <PropertyRef Name="UserID" />
+            <PropertyRef Name="AdminCode" />
+          </Key>
+          <Property Name="UserID" Type="Int32" Nullable="false" />
+          <Property Name="UserName" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
+          <Property Name="Password" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
+          <Property Name="AdminCode" Type="Int32" Nullable="false" />
+        </EntityType>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="cosmicModelStoreContainer" CdmEntityContainer="CosmicVerseEntities">
+          <EntitySetMapping Name="Articles">
+            <EntityTypeMapping TypeName="cosmicModel.Article">
+              <MappingFragment StoreEntitySet="Article">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="Title" ColumnName="Title" />
+                <ScalarProperty Name="ShortDesc" ColumnName="ShortDesc" />
+                <ScalarProperty Name="DateTime" ColumnName="DateTime" />
+                <ScalarProperty Name="Author" ColumnName="Author" />
+                <ScalarProperty Name="VoteAvg" ColumnName="VoteAvg" />
+                <ScalarProperty Name="FilePath" ColumnName="FilePath" />
+                <ScalarProperty Name="Tag" ColumnName="Tag" />
+                <ScalarProperty Name="MainSectionID" ColumnName="MainSectionID" />
+                <ScalarProperty Name="SubSectionID" ColumnName="SubSectionID" />
+                <ScalarProperty Name="Body" ColumnName="Body" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Comments">
+            <EntityTypeMapping TypeName="cosmicModel.Comment">
+              <MappingFragment StoreEntitySet="Comment">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="ArticleID" ColumnName="ArticleID" />
+                <ScalarProperty Name="Title" ColumnName="Title" />
+                <ScalarProperty Name="BodyMsg" ColumnName="BodyMsg" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="Vote" ColumnName="Vote" />
+                <ScalarProperty Name="DateTime" ColumnName="DateTime" />
+                <ScalarProperty Name="Flag" ColumnName="Flag" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Contents">
+            <EntityTypeMapping TypeName="cosmicModel.Content">
+              <MappingFragment StoreEntitySet="Content">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="Title" ColumnName="Title" />
+                <ScalarProperty Name="Body" ColumnName="Body" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="LinkHits">
+            <EntityTypeMapping TypeName="cosmicModel.LinkHit">
+              <MappingFragment StoreEntitySet="LinkHit">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="Link" ColumnName="Link" />
+                <ScalarProperty Name="IP" ColumnName="IP" />
+                <ScalarProperty Name="Date" ColumnName="Date" />
+                <ScalarProperty Name="Time" ColumnName="Time" />
+                <ScalarProperty Name="countrycode" ColumnName="countrycode" />
+                <ScalarProperty Name="countryname" ColumnName="countryname" />
+                <ScalarProperty Name="city" ColumnName="city" />
+                <ScalarProperty Name="regioncode" ColumnName="regioncode" />
+                <ScalarProperty Name="regionname" ColumnName="regionname" />
+                <ScalarProperty Name="areacode" ColumnName="areacode" />
+                <ScalarProperty Name="longitude" ColumnName="longitude" />
+                <ScalarProperty Name="latitude" ColumnName="latitude" />
+                <ScalarProperty Name="zipcode" ColumnName="zipcode" />
+                <ScalarProperty Name="IPDesc" ColumnName="IPDesc" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="LinkSites">
+            <EntityTypeMapping TypeName="cosmicModel.LinkSite">
+              <MappingFragment StoreEntitySet="LinkSite">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="Link" ColumnName="Link" />
+                <ScalarProperty Name="IP" ColumnName="IP" />
+                <ScalarProperty Name="Date" ColumnName="Date" />
+                <ScalarProperty Name="Time" ColumnName="Time" />
+                <ScalarProperty Name="countrycode" ColumnName="countrycode" />
+                <ScalarProperty Name="countryname" ColumnName="countryname" />
+                <ScalarProperty Name="city" ColumnName="city" />
+                <ScalarProperty Name="regioncode" ColumnName="regioncode" />
+                <ScalarProperty Name="regionname" ColumnName="regionname" />
+                <ScalarProperty Name="areacode" ColumnName="areacode" />
+                <ScalarProperty Name="longitude" ColumnName="longitude" />
+                <ScalarProperty Name="latitude" ColumnName="latitude" />
+                <ScalarProperty Name="zipcode" ColumnName="zipcode" />
+                <ScalarProperty Name="IPDesc" ColumnName="IPDesc" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="MainSections">
+            <EntityTypeMapping TypeName="cosmicModel.MainSection">
+              <MappingFragment StoreEntitySet="MainSection">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="Title" ColumnName="Title" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Personals">
+            <EntityTypeMapping TypeName="cosmicModel.Personal">
+              <MappingFragment StoreEntitySet="Personal">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="ReportsTo" ColumnName="ReportsTo" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="SubSections">
+            <EntityTypeMapping TypeName="cosmicModel.SubSection">
+              <MappingFragment StoreEntitySet="SubSection">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="Title" ColumnName="Title" />
+                <ScalarProperty Name="MainSectionID" ColumnName="MainSectionID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tbl_Conversation">
+            <EntityTypeMapping TypeName="cosmicModel.tbl_Conversation">
+              <MappingFragment StoreEntitySet="tbl_Conversation">
+                <ScalarProperty Name="ConID" ColumnName="ConID" />
+                <ScalarProperty Name="ConnectionIDUser" ColumnName="ConnectionIDUser" />
+                <ScalarProperty Name="ConnectionIDAdmin" ColumnName="ConnectionIDAdmin" />
+                <ScalarProperty Name="UserGroup" ColumnName="UserGroup" />
+                <ScalarProperty Name="Msg" ColumnName="Msg" />
+                <ScalarProperty Name="StartTime" ColumnName="StartTime" />
+                <ScalarProperty Name="EndTime" ColumnName="EndTime" />
+                <ScalarProperty Name="MsgDate" ColumnName="MsgDate" />
+                <ScalarProperty Name="MsgDuration" ColumnName="MsgDuration" />
+                <ScalarProperty Name="UserID" ColumnName="UserID" />
+                <ScalarProperty Name="AdminID" ColumnName="AdminID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tbl_Dep">
+            <EntityTypeMapping TypeName="cosmicModel.tbl_Dep">
+              <MappingFragment StoreEntitySet="tbl_Dep">
+                <ScalarProperty Name="DepID" ColumnName="DepID" />
+                <ScalarProperty Name="DepName" ColumnName="DepName" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tbl_Product">
+            <EntityTypeMapping TypeName="cosmicModel.tbl_Product">
+              <MappingFragment StoreEntitySet="tbl_Product">
+                <ScalarProperty Name="ProductID" ColumnName="ProductID" />
+                <ScalarProperty Name="ParentID" ColumnName="ParentID" />
+                <ScalarProperty Name="ChildID" ColumnName="ChildID" />
+                <ScalarProperty Name="ProductName" ColumnName="ProductName" />
+                <ScalarProperty Name="UnitPrice" ColumnName="UnitPrice" />
+                <ScalarProperty Name="FilePath" ColumnName="FilePath" />
+                <ScalarProperty Name="Hint" ColumnName="Hint" />
+                <ScalarProperty Name="UnitinStock" ColumnName="UnitinStock" />
+                <ScalarProperty Name="Discontinued" ColumnName="Discontinued" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tbl_User">
+            <EntityTypeMapping TypeName="cosmicModel.tbl_User">
+              <MappingFragment StoreEntitySet="tbl_User">
+                <ScalarProperty Name="UserID" ColumnName="UserID" />
+                <ScalarProperty Name="UserName" ColumnName="UserName" />
+                <ScalarProperty Name="Password" ColumnName="Password" />
+                <ScalarProperty Name="AdminCode" ColumnName="AdminCode" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="True" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="True" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

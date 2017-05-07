@@ -1,0 +1,89 @@
+﻿@using System.Web.Mvc;
+@using System.Web.Mvc.Html;
+@using MvcSiteMapProvider.Web.Html.Models;
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Technical Cosmic Verse</title>
+  
+  <script src="~/Content/js/jquery-1.10.2.min.js" ></script>
+  <link href="~/Content/Css/kendo.common.min.css" rel="stylesheet" />
+  <link href="~/Content/Css/kendo.rtl.min.css" rel="stylesheet" />
+  <link href="~/Content/Css/kendo.dataviz.default.min.css" rel="stylesheet" />
+  <link href="~/Content/Css/kendo.dataviz.min.css" rel="stylesheet" />
+  <link href="~/Content/Css/kendo.default.min.css" rel="stylesheet" />
+  
+   @* @System.Web.Optimization.Scripts.Render("~/bundles/jqueryDT")
+   @RenderSection("head", required: false)*@
+  <script>
+      
+      $(document).ready(function () {
+         $("a").click(function (event) {
+               // Capture the href from the selected link...
+               var link = this.href;
+           
+               $.ajax({
+               type: 'POST',
+               url: "/Home/LinkHit",
+               data: {
+                   'link': link
+               },
+               dataType: 'json'
+
+               });
+         });
+
+      });
+
+               //$.ajax({
+               //    type: 'POST',
+               //    url: "/Home/LinkHit",
+               //    data: {
+               //        'link': link, 'countrycode': countrycode, 'countryname': countryname, 'city': city, 'ip': ip, 'regioncode': regioncode, 'regionname': regionname, 'areacode': areacode, 'longitude': longitude,'latitude': latitude, 'zipcode': zipcode
+               //    },
+               //    dataType: 'json'
+           // do something if required....
+           // would prevent the link from executing, if that is something you want to do...
+          // return false; // not needed if you want the link to execute normally...
+      
+   </script>
+ 
+</head>
+<body>
+     @Html.Partial("_Header")
+     @Html.Partial("_Menu")
+ @* <div id="body" style=" border: 2px solid #a1a1a1;
+    background: #f0f0f0;
+    width: 1007px;
+    border-radius: 10px;
+    margin-left:65px; margin-top:4px; "; >*@
+
+   @Html.MvcSiteMap().SiteMapPath()
+
+    <div style="margin-left:35px;margin-right:24px;">     
+                @RenderBody()
+    
+            
+        </div>
+      <br />
+          @Html.Partial("_Footer")          
+   
+          @System.Web.Optimization.Scripts.Render("~/bundles/jquery")
+        @RenderSection("scripts", required: false)
+
+    <input type="hidden" id="country-code" />
+<input type="hidden" id="country-name" />
+<input type="hidden" id="city" />
+<input type="hidden" id="ip"/>
+<input type="hidden" id="region-code" />
+<input type="hidden" id="region-name" />
+<input type="hidden" id="area-code" />
+<input type="hidden" id="longitude" />
+<input type="hidden" id="latitude"/>
+<input type="hidden" id="zipcode" />
+       
+</body>
+</html>
